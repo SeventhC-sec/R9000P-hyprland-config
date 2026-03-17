@@ -1,0 +1,224 @@
+/* Minimal Rofi Theme */
+/* wallust dynamic colors + wallpaper background */
+
+/*****----- Configuration -----*****/
+configuration {
+    modi:                       "drun,filebrowser,run,window";
+    show-icons:                 true;
+    display-drun:               "  apps";
+    display-run:                "  term";
+    display-filebrowser:        "  files";
+    display-window:             "  window";
+    drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
+    me-accept-entry:            "MousePrimary";
+}
+
+/* ---- Load wallust colors ---- */
+@theme "~/.config/rofi/wallust/colors-rofi.rasi"
+
+/*****----- Global Properties -----*****/
+* {
+    bg:                          @background;
+    bg-alt:                      @color1;
+    fg:                          @foreground;
+    accent:                      @color12;
+    active:                      @color11;
+    urgent:                      #F7768E;
+
+    border-color:                @active;
+    background-color:            transparent;
+    text-color:                  @fg;
+}
+
+/*****----- Main Window -----*****/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       35%;
+    border:                      2px solid;
+    border-radius:               12px;
+    border-color:                @accent;
+    background-color:            @bg;
+    cursor:                      "default";
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    spacing:                     10px;
+    padding:                     20px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "message", "custombox" ];
+}
+
+/*****----- Custom Box (sidebar + list) -----*****/
+custombox {
+    spacing:                     0px;
+    background-color:            transparent;
+    orientation:                 horizontal;
+    children:                    [ "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    spacing:                     10px;
+    padding:                     10px 14px;
+    border:                      0px solid;
+    border-radius:               8px;
+    background-color:            @bg-alt;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    expand:                      false;
+    str:                         " ";
+    padding:                     5px 0px;
+    background-color:            inherit;
+    text-color:                  @accent;
+}
+
+entry {
+    padding:                     5px 0px;
+    background-color:            inherit;
+    text-color:                  @fg;
+    cursor:                      text;
+    placeholder:                 "Search...";
+    placeholder-color:           @color4;
+}
+
+/*****----- Listview -----*****/
+listview {
+    columns:                     1;
+    lines:                       7;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    fixed-height:                true;
+    spacing:                     5px;
+    padding:                     10px;
+    border:                      2px solid;
+    border-radius:               0px 8px 8px 0px;
+    border-color:                @active;
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    spacing:                     10px;
+    padding:                     10px;
+    border-radius:               45px;
+    background-color:            transparent;
+	children: [ element-text, element-icon ];
+    cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            transparent;
+    text-color:                  @fg;
+}
+
+element normal.active {
+    background-color:            transparent;
+    text-color:                  @accent;
+}
+
+element normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @bg;
+}
+
+element selected.normal {
+    background-color:            @accent;
+    text-color:                  @bg;
+}
+
+element selected.active {
+    background-color:            @urgent;
+    text-color:                  @accent;
+}
+
+element selected.urgent {
+    background-color:            @active;
+    text-color:                  @bg;
+}
+
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  @fg;
+}
+
+element-icon {
+    size:                        24px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher {
+    expand:                      false;
+    orientation:                 vertical;
+    spacing:                     0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               8px 0px 0px 8px;
+    background-color:            @bg-alt;
+}
+
+button {
+    padding:                     0px 20px;
+    border:                      0px;
+    border-radius:               8px;
+    background-color:            transparent;
+    text-color:                  @fg;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    cursor:                      pointer;
+}
+
+button selected {
+    border:                      2px 0px 2px 2px;
+    border-radius:               6px;
+    border-color:                @active;
+    background-color:            @fg;
+    text-color:                  @accent;
+}
+
+/*****----- Message -----*****/
+message {
+    padding:                     0px;
+    background-color:            transparent;
+}
+
+textbox {
+    padding:                     12px;
+    border-radius:               8px;
+    background-color:            @color0;
+    text-color:                  @fg;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    highlight:                   none;
+    markup:                      true;
+}
+
+error-message {
+    padding:                     10px;
+    border:                      2px solid;
+    border-radius:               8px;
+    border-color:                @urgent;
+    background-color:            @bg;
+}
